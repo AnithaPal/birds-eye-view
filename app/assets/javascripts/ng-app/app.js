@@ -1,13 +1,23 @@
-angular
-  .module('birdsEyeView', ['ngAnimate', 'ui.router', 'templates'])
-  .config(function($stateProvider, $urlRouterProvider, $locationProvider){
-    $stateProvider
-    .state('home', {
-      url: '/',
-      templateUrl: 'home.html',
-      controller: 'HomeCtrl'
-    });
-    $urlRouterProvider.otherwise('/');
-    $locationProvider.html5mode(true);
+(function(){
+  function config($stateProvider, $urlRouterProvider, $locationProvider) {
+    $locationProvider
+      .html5Mode({
+        enabled: true,
+        requireBase: false
+      });
 
-  });
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        templateUrl: 'home.html',
+        controller: 'HomeCtrl'
+      });
+
+    $urlRouterProvider.otherwise('/');
+
+  }
+
+  angular
+    .module('birdsEyeView', ['ngAnimate', 'ui.router', 'templates'])
+    .config(config);
+})();
